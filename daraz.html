@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daraz.com Clone - Online Shopping</title>
+    <style>
+        :root {
+            --daraz-orange: #f57224;
+            --daraz-dark: #f85606;
+            --daraz-bg: #f5f5f5;
+            --daraz-text: #212121;
+            --daraz-text-light: #9e9e9e;
+        }
+
+        body {
+            font-family: Roboto, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--daraz-bg);
+            color: var(--daraz-text);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Top Banner */
+        .top-banner {
+            background-color: var(--daraz-bg);
+            font-size: 12px;
+            color: var(--daraz-text-light);
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px 10%;
+            gap: 20px;
+        }
+
+        .top-banner a:hover {
+            color: var(--daraz-orange);
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            padding: 15px 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--daraz-orange);
+            font-style: italic;
+        }
+
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-right: none;
+            border-radius: 4px 0 0 4px;
+            font-size: 14px;
+            outline: none;
+            background: #f5f5f5;
+        }
+
+        .search-btn {
+            background-color: var(--daraz-orange);
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .search-btn:hover {
+            background-color: var(--daraz-dark);
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: var(--daraz-orange);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background-color: var(--daraz-dark);
+            color: white;
+            font-size: 10px;
+            padding: 2px 5px;
+            border-radius: 10px;
+        }
+
+        /* Main Content */
+        .main-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .categories {
+            width: 20%;
+            background: white;
+            border-radius: 8px;
+            padding: 10px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .category-item {
+            padding: 8px 15px;
+            font-size: 13px;
+            color: #757575;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .category-item:hover {
+            background-color: #f5f5f5;
+            color: var(--daraz-orange);
+        }
+
+        .banner {
+            width: 80%;
+            background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        /* Flash Sale */
+        .section-header {
+            font-size: 22px;
+            color: var(--daraz-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 4px;
+            padding: 10px;
+            cursor: pointer;
+            transition: box-shadow 0.2s;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 150px;
+            background-color: #eee;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ccc;
+            font-size: 2rem;
+        }
+
+        .product-title {
+            font-size: 13px;
+            line-height: 1.3;
+            height: 34px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: var(--daraz-orange);
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 2px;
+        }
+
+        .product-original-price {
+            font-size: 12px;
+            color: #9e9e9e;
+            text-decoration: line-through;
+            display: inline-block;
+        }
+
+        .product-discount {
+            font-size: 12px;
+            color: var(--daraz-text);
+            margin-left: 5px;
+        }
+
+        /* Back button */
+        .back-nav {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--daraz-dark);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-weight: bold;
+            z-index: 1000;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Nav -->
+    <div class="top-banner">
+        <span>SAVE MORE ON APP</span>
+        <span>SELL ON DARAZ</span>
+        <span>CUSTOMER CARE</span>
+        <span>TRACK MY ORDER</span>
+        <span><a href="/login.html">LOGIN</a></span>
+        <span><a href="/register.html">SIGNUP</a></span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Daraz</a>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search in Daraz">
+            <button class="search-btn">SEARCH</button>
+        </div>
+        <div class="cart-icon">
+            🛒
+            <span class="cart-count">2</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+
+        <!-- Hero: Categories + Banner -->
+        <div class="hero">
+            <div class="categories">
+                <div class="category-item">Women's Fashion</div>
+                <div class="category-item">Health & Beauty</div>
+                <div class="category-item">Men's Fashion</div>
+                <div class="category-item">Watches & Accessories</div>
+                <div class="category-item">Electronic Devices</div>
+                <div class="category-item">TV & Home Appliances</div>
+                <div class="category-item">Electronic Accessories</div>
+                <div class="category-item">Groceries & Pets</div>
+                <div class="category-item">Babies & Toys</div>
+                <div class="category-item">Home & Lifestyle</div>
+                <div class="category-item">Sports & Outdoors</div>
+                <div class="category-item">Automotive & Motorbike</div>
+            </div>
+            <div class="banner">
+                Huge Super Sale - Up to 80% Off
+            </div>
+        </div>
+
+        <!-- Flash Sale -->
+        <h2 class="section-header">Flash Sale</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-img">📱</div>
+                <div class="product-title">Smartphone X Pro 128GB 5G - Global Version</div>
+                <div class="product-price">৳ 25,999</div>
+                <div>
+                    <span class="product-original-price">৳ 30,000</span>
+                    <span class="product-discount">-13%</span>
+                </div>
+            </div>
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-img">🎧</div>
+                <div class="product-title">Wireless Bluetooth Earbuds with Noise Cancellation</div>
+                <div class="product-price">৳ 1,200</div>
+                <div>
+                    <span class="product-original-price">৳ 2,500</span>
+                    <span class="product-discount">-52%</span>
+                </div>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-img">👟</div>
+                <div class="product-title">Running Shoes for Men - Lightweight Breathable</div>
+                <div class="product-price">৳ 850</div>
+                <div>
+                    <span class="product-original-price">৳ 1,500</span>
+                    <span class="product-discount">-43%</span>
+                </div>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-img">⌚</div>
+                <div class="product-title">Smart Watch Fitness Tracker Heart Rate Monitor</div>
+                <div class="product-price">৳ 1,450</div>
+                <div>
+                    <span class="product-original-price">৳ 3,000</span>
+                    <span class="product-discount">-51%</span>
+                </div>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card">
+                <div class="product-img">👕</div>
+                <div class="product-title">Men's Cotton Casual T-Shirt - Summer Collection</div>
+                <div class="product-price">৳ 250</div>
+                <div>
+                    <span class="product-original-price">৳ 500</span>
+                    <span class="product-discount">-50%</span>
+                </div>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card">
+                <div class="product-img">🎒</div>
+                <div class="product-title">Waterproof Laptop Backpack 15.6 inch Travel Bag</div>
+                <div class="product-price">৳ 780</div>
+                <div>
+                    <span class="product-original-price">৳ 1,200</span>
+                    <span class="product-discount">-35%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Hub -->
+    <a href="/" class="back-nav">← Back to Main App</a>
+
+</body>
+
+</html>
